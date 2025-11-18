@@ -1,0 +1,2 @@
+# montaremocheta-theme
+Template wordpress 
