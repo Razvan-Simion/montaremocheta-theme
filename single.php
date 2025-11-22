@@ -1,48 +1,54 @@
 <?php
 /**
- * Template pentru un articol individual (single post)
- * Folosit pentru tipul de conținut "post" (blog).
+ * Template pentru afișarea unui articol individual.
+ *
+ * @package montaremocheta
  */
 
-get_header(); // încarcă header.php
-?>
+get_header();
 
-<main class="single-post container">
+if ( have_posts() ) :
+    while ( have_posts() ) :
+        the_post();
+        ?>
 
-    <?php
-    // Verificăm dacă există postări
-    if ( have_posts() ) :
-        while ( have_posts() ) : the_post();
+        <div class="mm-page container">
+            <header class="mm-page-header">
+                <h1><?php the_title(); ?></h1>
+
+                <p class="mm-post-meta">
+                    <?php echo esc_html( get_the_date() ); ?>
+                    &middot;
+                    <?php the_category( ', ' ); ?>
+                </p>
+            </header>
+
+            <div class="mm-page-content">
+                <?php
+                the_content();
+
+                wp_link_pages(
+                    [
+                        'before' => '<div class="page-links">' . esc_html__( 'Pagini:', 'montaremocheta' ),
+                        'after'  => '</div>',
+                    ]
+                );
+                ?>
+            </div>
+        </div>
+
+        <?php
+    endwhile;
+else :
     ?>
 
-        <!-- Titlul articolului -->
-        <h1 class="post-title"><?php the_title(); ?></h1>
-
-        <!-- Meta informații (autor, dată) – opțional -->
-        <div class="post-meta">
-            <span>Publicat pe <?php echo get_the_date(); ?></span>
+    <div class="mm-page container">
+        <div class="mm-page-content">
+            <p><?php esc_html_e( 'Nu am găsit articolul.', 'montaremocheta' ); ?></p>
         </div>
-
-        <!-- Conținutul articolului -->
-        <div class="post-content">
-            <?php the_content(); ?>
-        </div>
-
-        <!-- Navigare între articole (înainte / după) -->
-        <div class="post-navigation">
-            <?php
-                previous_post_link('<div class="prev-post">%link</div>');
-                next_post_link('<div class="next-post">%link</div>');
-            ?>
-        </div>
+    </div>
 
     <?php
-        endwhile;
-    else :
-        echo '<p>Articolul nu a fost găsit.</p>';
-    endif;
-    ?>
+endif;
 
-</main>
-
-<?php get_footer(); // încarcă footer.php ?>
+get_footer();

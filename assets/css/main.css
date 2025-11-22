@@ -1,0 +1,1092 @@
+/* ================================
+   DESIGN SYSTEM - ELOGY / MONTAREMOCHETA
+   ================================ */
+:root {
+  /* Culori brand */
+  --color-primary: #000000; /* negru */
+  --color-primary-dark: #000000; /* negru */
+  --color-secondary: #cc0000; /* roșu */
+
+  --color-bg: #f7f7f7;
+  --color-surface: #ffffff;
+
+  --color-text: #2d2d2d;
+  --color-text-light: #6a6a6a;
+
+  --color-border: #eeeeee;
+  --color-accent: #c7a76c;
+
+  --color-logo: #000000;
+
+  /* Typography */
+  --font-heading: "Montserrat", sans-serif;
+  --font-body: "Inter", "Montserrat", sans-serif;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.05rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.5rem;
+  --fs-xxl: 2.2rem;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-xxl: 3.5rem;
+
+  /* Layout */
+  --container-width: 1200px;
+  --radius-pill: 999px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+/* RESET & GLOBAL */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* când meniul mobil e deschis, blocăm scroll-ul */
+body.mm-menu-open {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+/* LAYOUT BAZĂ */
+
+.mm-main {
+  min-height: 60vh;
+}
+
+.mm-section {
+  padding: var(--space-xxl) var(--space-lg);
+}
+
+.mm-container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.mm-section h2 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--fs-xl);
+  margin: 0 0 var(--space-md);
+}
+
+/* HEADER */
+
+.mm-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.mm-header-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mm-logo img {
+  max-height: 48px;
+  width: auto;
+}
+
+.mm-site-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--color-logo);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: var(--fs-sm);
+}
+
+.mm-site-title:hover {
+  color: var(--color-primary);
+}
+
+.mm-main-nav {
+  margin-left: var(--space-md);
+}
+
+.mm-main-nav .mm-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.25rem;
+}
+
+/* Submeniu – fără buline */
+.mm-main-nav .mm-menu .sub-menu {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+.mm-main-nav .mm-menu .sub-menu li {
+  list-style: none;
+}
+/* Butonul de deschidere submeniu (săgeată) – ascuns pe desktop */
+.mm-sub-toggle {
+  display: none;
+}
+
+.mm-main-nav .mm-menu a {
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.mm-main-nav .mm-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width 0.2s ease;
+}
+
+.mm-main-nav .mm-menu a:hover::after,
+.mm-main-nav .mm-menu .current-menu-item > a::after {
+  width: 100%;
+}
+
+/* CTA HEADER – stil outline + hover umplut */
+
+.mm-cta-button {
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: transparent;
+  color: #000000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.mm-cta-button:hover {
+  background: #cc0000; /* roșu */
+  color: #ffffff;
+  border-color: #cc0000;
+  box-shadow: var(--shadow-soft);
+}
+
+/* CTA desktop vs mobil */
+
+.mm-cta-desktop {
+  margin-left: auto;
+}
+
+.mm-cta-mobile {
+  display: none;
+  margin-left: auto;
+}
+
+/* Burger */
+
+.mm-burger {
+  display: none;
+  margin-left: var(--space-md);
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Liniile burger-ului + animație */
+.mm-burger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--color-text);
+  border-radius: 999px;
+  margin: 6px 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* Burger – efect de transformare când e activ */
+.mm-burger.is-active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.mm-burger.is-active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mm-burger.is-active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Dropdown submeniu – desktop */
+
+@media (min-width: 961px) {
+  .mm-main-nav .mm-menu > li {
+    position: relative;
+  }
+
+  .mm-main-nav .mm-menu .sub-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 180px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 0.5rem 0;
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    z-index: 30;
+  }
+
+  .mm-main-nav .mm-menu > li:hover > .sub-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .mm-main-nav .mm-menu .sub-menu a {
+    display: block;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+
+  .mm-main-nav .mm-menu .sub-menu a:hover {
+    background: var(--color-bg);
+  }
+}
+
+.mm-header-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+
+.mm-header-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #ffffff;
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.mm-header-icon .mm-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.mm-header-icon:hover {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Dacă vrei să ascunzi iconițele pe telefoane foarte mici: */
+@media (max-width: 380px) {
+  .mm-header-icons {
+    display: none;
+  }
+}
+
+/* ================================
+   HERO CU IMAGINE + MASCĂ
+   ================================ */
+
+.mm-hero {
+  position: relative;
+  padding: 3rem 1.5rem 4rem;
+  min-height: 90vh; /* aproape tot ecranul */
+  color: #ffffff;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+}
+
+/* Masca peste imagine – gradient mai închis în stânga */
+.mm-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.55) 35%,
+    rgba(0, 0, 0, 0.25) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  pointer-events: none;
+}
+
+/* Conținutul stă deasupra măștii */
+.mm-hero-inner {
+  position: relative;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 2rem;
+  z-index: 1;
+}
+
+.mm-hero-text {
+  max-width: 40rem;
+}
+
+.mm-hero h1 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xxl);
+  line-height: 1.2;
+  margin: 0 0 var(--space-md);
+  color: #ffffff;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+  font-weight: 500; /* puțin mai subțire */
+}
+
+.mm-hero p {
+  margin: 0 0 var(--space-md);
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.mm-hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* BUTOANE – stil global: outline → hover umplut */
+
+.mm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+/* Primar */
+.mm-btn-primary {
+  background: transparent;
+  color: #000000;
+  border-color: #000000;
+}
+
+.mm-btn-primary:hover {
+  background: #cc0000;
+  color: #ffffff;
+  border-color: #cc0000;
+}
+
+/* Secundar */
+.mm-btn-secondary {
+  background: transparent;
+  color: #000000;
+  border-color: #00000033; /* gri transparent */
+}
+
+.mm-btn-secondary:hover {
+  background: #cc0000;
+  color: #ffffff;
+  border-color: #cc0000;
+}
+
+/* În HERO – butoane albe, outline alb */
+
+.mm-hero .mm-btn-primary,
+.mm-hero .mm-btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.mm-hero .mm-btn-primary:hover,
+.mm-hero .mm-btn-secondary:hover {
+  background: #ffffff;
+  color: var(--color-primary);
+}
+
+/* SECȚIUNI */
+
+.mm-section-services {
+  background: var(--color-bg);
+}
+
+.mm-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+
+.mm-service-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.mm-service-card h3 {
+  font-family: var(--font-heading);
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+}
+
+.mm-section-highlight {
+  background: var(--color-surface);
+}
+
+.mm-highlight-inner {
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+/* FOOTER */
+
+.mm-footer {
+  background: #111;
+  color: #eee;
+  padding: 2.5rem 1.5rem 1rem;
+  margin-top: 3rem;
+}
+
+.mm-footer-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.mm-footer h4 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  margin: 0 0 1rem;
+}
+
+.mm-footer a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.mm-footer a:hover {
+  text-decoration: underline;
+}
+
+.mm-footer-bottom {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+/* RESPONSIVE */
+
+/* Tablete & mobil – până la 960px
+   => comutăm pe versiune cu burger + CTA "Sună acum" */
+/* ===========================================
+   RESPONSIVE – TABLETE & MOBILE < 960px
+   =========================================== */
+@media (max-width: 960px) {
+  /* Layout header */
+  .mm-header-inner {
+    padding-inline: 1rem;
+  }
+
+  /* Ascundem meniul desktop + transformăm în panou mobil */
+  .mm-main-nav {
+    position: fixed;
+    top: 64px; /* Înălțimea headerului */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.94); /* alb cu transparență ușoară */
+    backdrop-filter: blur(6px); /* blur elegant ca pe iOS */
+    border-top: 1px solid var(--color-border);
+    display: block;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    z-index: 30;
+  }
+
+  /* Meniul se deschide când JS pune această clasă */
+  .mm-main-nav.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Structura listei meniu */
+  .mm-main-nav .mm-menu {
+    flex-direction: column;
+    gap: 0;
+    padding: 1.75rem 1.75rem 2.25rem;
+  }
+
+  .mm-main-nav .mm-menu > li {
+    margin-bottom: 0.2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap; /* permite submeniului să treacă pe rândul următor */
+  }
+
+  .mm-main-nav .mm-menu > li:last-child {
+    border-bottom: none;
+  }
+
+  .mm-main-nav .mm-menu > li > a {
+    flex: 1;
+    padding: 0.55rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  /* === BUTONUL DE ACCORDION (SĂGEATĂ) === */
+  .mm-sub-toggle {
+    border: none;
+    background: transparent;
+    padding: 0.35rem 0.4rem;
+    font-size: 1.15rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--color-text-light);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, color 0.2s ease, background 0.2s ease;
+    border-radius: 999px;
+  }
+
+  /* Săgeata când submeniul este deschis */
+  .mm-main-nav .mm-menu li.is-open > .mm-sub-toggle {
+    transform: rotate(90deg);
+    color: #ffffff;
+    background: var(--color-secondary); /* roșu brand */
+  }
+
+  /* Highlight discret pentru item activ */
+  .mm-main-nav .mm-menu li.is-open {
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  .mm-main-nav .mm-menu li.is-open > a {
+    font-weight: 600;
+  }
+
+  /* === SUBMENIU === */
+  .mm-main-nav .mm-menu .sub-menu {
+    position: static;
+    box-shadow: none;
+    padding: 0 0 0.6rem 1.2rem;
+    margin-top: 0.25rem;
+    border-left: 1px solid #e5e5e5;
+    border-radius: 0;
+    display: none; /* ASCUNS la început */
+    flex-basis: 100%; /* ia toată lățimea rândului */
+    width: 100%;
+  }
+
+  /* Arătăm submeniul doar când li are .is-open (pusă de JS) */
+  .mm-main-nav .mm-menu li.is-open > .sub-menu {
+    display: block;
+  }
+
+  .mm-main-nav .mm-menu .sub-menu a {
+    padding: 0.25rem 0;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+  }
+
+  /* === CTA desktop dispare, CTA mobil apare === */
+  .mm-cta-desktop {
+    display: none;
+  }
+
+  .mm-cta-mobile {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  /* Afișăm burgerul */
+  .mm-burger {
+    display: block;
+  }
+
+  /* HERO devine o singură coloană */
+  .mm-hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Servicii în 2 coloane pe tablete */
+  .mm-services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Telefoane mici – extra ajustări sub 768px */
+@media (max-width: 768px) {
+  .mm-hero {
+    padding: 2.5rem 1.2rem 3rem;
+    min-height: 100vh;
+  }
+
+  .mm-section {
+    padding: 2.5rem 1.2rem;
+  }
+
+  .mm-services-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .mm-footer-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+/* =======================
+   PAGINI INTERNE
+======================= */
+
+.mm-page {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--space-xxl) var(--space-lg);
+}
+
+.mm-page-header {
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.mm-page-header h1 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xxl);
+  margin: 0 0 var(--space-sm);
+}
+
+.mm-page-header p {
+  margin: 0;
+  color: var(--color-text-light);
+}
+
+/* Conținut pagină */
+.mm-page-content {
+  font-size: var(--fs-base);
+  color: var(--color-text);
+}
+
+/* Tipografie în interiorul .mm-page-content */
+
+.mm-page-content h2,
+.mm-page-content h3,
+.mm-page-content h4 {
+  font-family: var(--font-heading);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.mm-page-content h2 {
+  font-size: 1.4rem;
+}
+
+.mm-page-content h3 {
+  font-size: 1.15rem;
+}
+
+.mm-page-content h4 {
+  font-size: 1.05rem;
+}
+
+.mm-page-content p {
+  margin-bottom: 1rem;
+}
+
+.mm-page-content ul,
+.mm-page-content ol {
+  margin-top: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.2rem;
+}
+
+.mm-page-content li {
+  margin-bottom: 0.35rem;
+}
+
+/* Linkuri în conținut */
+.mm-page-content a {
+  color: var(--color-secondary);
+  text-decoration: underline;
+}
+
+.mm-page-content a:hover {
+  color: #000000;
+}
+
+/* Citări / blockquote */
+.mm-page-content blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.2rem;
+  border-left: 3px solid var(--color-secondary);
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  color: var(--color-text-light);
+}
+
+/* Imagini în conținut */
+.mm-page-content img {
+  border-radius: var(--radius-md);
+  margin: 1rem 0;
+}
+
+/* Formulare în pagini (ex: Contact) */
+
+.mm-page-content form {
+  max-width: 640px;
+}
+
+/* Grupe formular */
+.mm-page-content .form-group {
+  margin-bottom: 1rem;
+}
+
+/* Label */
+.mm-page-content label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+
+/* Inputuri & textarea */
+.mm-page-content input[type="text"],
+.mm-page-content input[type="email"],
+.mm-page-content input[type="tel"],
+.mm-page-content input[type="url"],
+.mm-page-content input[type="number"],
+.mm-page-content input[type="search"],
+.mm-page-content input[type="password"],
+.mm-page-content textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: #ffffff;
+  font-family: inherit;
+  font-size: var(--fs-base);
+  line-height: 1.4;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.mm-page-content textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.mm-page-content input[type="text"]:focus,
+.mm-page-content input[type="email"]:focus,
+.mm-page-content input[type="tel"]:focus,
+.mm-page-content input[type="url"]:focus,
+.mm-page-content input[type="number"]:focus,
+.mm-page-content input[type="search"]:focus,
+.mm-page-content input[type="password"]:focus,
+.mm-page-content textarea:focus {
+  outline: none;
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 1px rgba(204, 0, 0, 0.08);
+}
+
+/* Buton trimitere formular */
+.mm-page-content button,
+.mm-page-content input[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.6rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid #000000;
+  background: #000000;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.mm-page-content button:hover,
+.mm-page-content input[type="submit"]:hover {
+  background: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: #ffffff;
+  box-shadow: var(--shadow-soft);
+}
+
+/* State mesaje formular */
+
+.mm-page-content .form-notice,
+.mm-page-content .wpcf7-response-output {
+  margin-top: var(--space-sm);
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+}
+
+.mm-page-content .form-notice--success,
+.mm-page-content .wpcf7-mail-sent-ok {
+  background: #e6f4ea;
+  color: #137333;
+  border: 1px solid #ceead6;
+}
+
+.mm-page-content .form-notice--error,
+.mm-page-content .wpcf7-validation-errors,
+.mm-page-content .wpcf7-acceptance-missing {
+  background: #fce8e6;
+  color: #c5221f;
+  border: 1px solid #f8c7c3;
+}
+
+.mm-page-content .form-notice--info {
+  background: #e8f0fe;
+  color: #174ea6;
+  border: 1px solid #c3d5fd;
+}
+
+/* Erori pe câmpuri */
+.mm-page-content .wpcf7-not-valid-tip {
+  color: #c5221f;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.mm-page-content .wpcf7-form-control.wpcf7-not-valid {
+  border-color: #c5221f;
+  background: #fff6f6;
+}
+
+/* Mesaje de eroare globale */
+.mm-page-content .wpcf7-response-output.wpcf7-validation-errors {
+  border: 1px solid #ff9a9a;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .mm-page {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .mm-page-header h1 {
+    font-size: var(--fs-xl);
+  }
+}
+
+/* =======================
+   ARHIVE (categorie / tag /
+   autor / dată / blog)
+======================= */
+
+.mm-archive-description {
+  margin-top: var(--space-sm);
+  max-width: 48rem;
+  color: var(--color-text-light);
+  font-size: var(--fs-sm);
+}
+
+.mm-archive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+
+.mm-archive-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.mm-archive-card-title {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  line-height: 1.3;
+  margin-bottom: var(--space-sm);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.mm-archive-card-title:hover,
+.mm-archive-card-title:focus {
+  color: var(--color-secondary);
+  transform: translateY(-1px);
+}
+
+.mm-archive-card-excerpt {
+  font-size: var(--fs-sm);
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Paginare arhivă */
+
+.mm-archive-pagination {
+  margin-top: var(--space-xl);
+  display: flex;
+  justify-content: center;
+}
+
+.mm-archive-pagination .nav-links,
+.mm-archive-pagination .pagination {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.mm-archive-pagination .page-numbers {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2rem;
+  height: 2.2rem;
+  padding: 0 0.75rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  text-decoration: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  background: #ffffff;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.mm-archive-pagination .page-numbers.current {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+  box-shadow: var(--shadow-soft);
+}
+
+.mm-archive-pagination .page-numbers:hover:not(.current),
+.mm-archive-pagination .page-numbers:focus:not(.current) {
+  background: var(--color-bg);
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+}
+
+.mm-archive-pagination .page-numbers.prev,
+.mm-archive-pagination .page-numbers.next {
+  padding: 0 1rem;
+}
+
+/* Responsive arhive */
+
+@media (max-width: 1024px) {
+  .mm-archive-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .mm-archive-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-md);
+  }
+
+  .mm-archive-card {
+    padding: var(--space-md);
+  }
+
+  .mm-archive-card-title {
+    font-size: var(--fs-md);
+  }
+
+  .mm-archive-pagination {
+    justify-content: flex-start;
+  }
+}
