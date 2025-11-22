@@ -347,7 +347,7 @@ a {
 }
 
 /* Dacă vrei să ascunzi iconițele pe telefoane foarte mici: */
-@media (max-width: 380px) {
+@media (max-width: 427px) {
   .mm-header-icons {
     display: none;
   }
@@ -1089,4 +1089,73 @@ a {
   .mm-archive-pagination {
     justify-content: flex-start;
   }
+}
+/* ==========================
+   DROPDOWN SEARCH PREMIUM
+   ========================== */
+
+.mm-search-dropdown {
+  position: absolute;
+  top: 65px;
+  right: 20px;
+  width: 260px;
+  background: #fff;
+  padding: 0.8rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity .22s ease, transform .22s ease;
+  z-index: 50;
+}
+
+.mm-search-dropdown.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mm-search-form {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.mm-search-input {
+  flex: 1;
+  padding: .55rem .8rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  font-size: .95rem;
+}
+
+.mm-search-input:focus {
+  outline: none;
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 1px rgba(204,0,0,0.15);
+}
+
+.mm-search-submit {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease;
+}
+
+.mm-search-submit svg {
+  width: 18px;
+  height: 18px;
+}
+
+.mm-search-submit:hover {
+  background: var(--color-primary);
+  color: #fff;
 }
