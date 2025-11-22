@@ -1,35 +1,28 @@
 <?php
-/**
- * Template pentru Paginile statice (ex: Contact, Servicii, Showroom)
- * WordPress îl folosește automat pentru tipul de conținut "page".
- */
-
-get_header(); // încarcă header.php
+get_header();
 ?>
 
-<main class="page-content container">
+<?php if ( have_posts() ) : ?>
+	<?php while ( have_posts() ) : the_post(); ?>
 
-    <?php
-    // Verificăm dacă există conținut
-    if ( have_posts() ) :
-        while ( have_posts() ) : the_post();
-    ?>
+	<div class="mm-page container">
+		<div class="mm-page-header">
+			<h1><?php the_title(); ?></h1>
+		</div>
+		<div class="mm-page-content">
+			<?php the_content(); ?>
+		</div>
+	</div>
 
-        <!-- Titlul paginii -->
-        <h1 class="page-title"><?php the_title(); ?></h1>
+	<?php endwhile; ?>
+<?php else : ?>
 
-        <!-- Conținutul paginii (editabil din WordPress) -->
-        <div class="page-text">
-            <?php the_content(); ?>
-        </div>
+	<div class="mm-page container">
+		<div class="mm-page-content">
+			<p>Nu există conținut disponibil.</p>
+		</div>
+	</div>
 
-    <?php
-        endwhile;
-    else :
-        echo '<p>Nu există conținut disponibil.</p>';
-    endif;
-    ?>
+<?php endif; ?>
 
-</main>
-
-<?php get_footer(); // încarcă footer.php ?>
+<?php get_footer(); ?>
